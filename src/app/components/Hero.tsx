@@ -1,66 +1,89 @@
+'use client';
+
+import { useRef } from 'react';
+import LaserFlow from '@/components/ui/laser-flow';
+import { HeroVideoDialog } from '@/components/ui/hero-video-dialog';
+
 export default function Hero() {
+  const revealImgRef = useRef<HTMLImageElement>(null);
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+    <section className="pt-2 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 mb-8">
-            <span className="text-sm font-medium text-foreground/80">
-              🚀 Launching Soon
-            </span>
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight">
-            Transform Your Business
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              With Our SaaS
-            </span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-xl sm:text-2xl text-foreground/70 mb-12 max-w-3xl mx-auto">
-            Streamline your workflow, boost productivity, and scale your
-            business with our powerful all-in-one platform.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="#waitlist"
-              className="bg-foreground text-background px-8 py-4 rounded-full hover:opacity-90 transition-opacity font-semibold text-lg w-full sm:w-auto"
-            >
-              Join the Waitlist
-            </a>
-            <a
-              href="#features"
-              className="border-2 border-foreground/20 text-foreground px-8 py-4 rounded-full hover:border-foreground/40 transition-colors font-semibold text-lg w-full sm:w-auto"
-            >
-              Learn More
-            </a>
-          </div>
-
-          {/* Social Proof */}
-          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-foreground/60">
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-yellow-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-              <span className="font-medium">4.9/5 Rating</span>
+          {/* LaserFlow with Video Box */}
+          <div 
+            className="mt-12 lg:mt-20 h-[500px] sm:h-[600px] lg:h-[800px] rounded-2xl lg:rounded-3xl relative overflow-hidden bg-black"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const el = revealImgRef.current;
+              if (el) {
+                el.style.setProperty('--mx', `${x}px`);
+                el.style.setProperty('--my', `${y + rect.height * 0.5}px`);
+              }
+            }}
+            onMouseLeave={() => {
+              const el = revealImgRef.current;
+              if (el) {
+                el.style.setProperty('--mx', '-9999px');
+                el.style.setProperty('--my', '-9999px');
+              }
+            }}
+          >
+            <LaserFlow
+              horizontalBeamOffset={0.1}
+              verticalBeamOffset={0.0}
+              color="#FF813D"
+            />
+            
+            {/* Video/Content Box */}
+            <div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[92%] sm:w-[88%] lg:w-[86%] h-[65%] sm:h-[62%] lg:h-[60%] flex items-center justify-center z-[6] overflow-hidden rounded-2xl lg:rounded-3xl border-2 border-[#FF813D]"
+              style={{
+                backgroundColor: '#060010',
+                boxShadow: '0 0 30px rgba(255, 129, 61, 0.4)'
+            }}>
+              <div className="relative w-full h-full">
+                <HeroVideoDialog
+                  className="block dark:hidden"
+                  animationStyle="from-center"
+                  videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+                  thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
+                  thumbnailAlt="Hero Video"
+                />
+                <HeroVideoDialog
+                  className="hidden dark:block"
+                  animationStyle="from-center"
+                  videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+                  thumbnailSrc="https://startup-template-sage.vercel.app/hero-dark.png"
+                  thumbnailAlt="Hero Video"
+                />
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">👥</span>
-              <span className="font-medium">10,000+ Users</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">⚡</span>
-              <span className="font-medium">99.9% Uptime</span>
-            </div>
+
+            {/* Optional: Reveal effect image */}
+            <img
+              ref={revealImgRef}
+              src="/placeholder-image.jpg"
+              alt="Reveal effect"
+              style={{
+                position: 'absolute',
+                width: '100%',
+                top: '-50%',
+                zIndex: 5,
+                mixBlendMode: 'lighten',
+                opacity: 0.3,
+                pointerEvents: 'none',
+                // @ts-ignore - CSS custom properties
+                '--mx': '-9999px',
+                '--my': '-9999px',
+                WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)',
+                maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat'
+              } as React.CSSProperties}
+            />
           </div>
         </div>
       </div>

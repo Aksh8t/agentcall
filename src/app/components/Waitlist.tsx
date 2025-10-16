@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function Waitlist() {
   const [email, setEmail] = useState("");
@@ -33,12 +34,36 @@ export default function Waitlist() {
 
   return (
     <section id="waitlist" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 border border-foreground/10 rounded-3xl p-8 sm:p-12 text-center">
-          {/* Section Header */}
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-            Join the Waitlist
-          </h2>
+      <div className="max-w-6xl mx-auto">
+        {/* Black section with sparkles */}
+        <div className="bg-black flex flex-col items-center justify-center overflow-hidden rounded-3xl py-16 px-8">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-bold text-center text-white relative z-20 mb-8">
+            Join Waitlist
+          </h1>
+          <div className="w-[40rem] h-40 relative">
+            {/* Gradients */}
+            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+
+            {/* Core component */}
+            <SparklesCore
+              background="transparent"
+              minSize={0.4}
+              maxSize={1}
+              particleDensity={1200}
+              className="w-full h-full"
+              particleColor="#FFFFFF"
+            />
+
+            {/* Radial Gradient to prevent sharp edges */}
+            <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+          </div>
+        </div>
+
+        {/* Form section below */}
+        <div className="mt-12 text-center">
           <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
             Be the first to know when we launch. Get early access and exclusive
             benefits.

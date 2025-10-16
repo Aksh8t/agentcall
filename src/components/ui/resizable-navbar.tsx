@@ -377,23 +377,20 @@ export const ProductItem = ({
 };
 
 export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
-  // Hide logo when navbar is scrolled/minimized
-  if (visible) {
-    return null;
-  }
-  
   return (
     <a
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-lg font-medium text-black"
     >
-      <img
-        src="https://res.cloudinary.com/dngmg3slj/image/upload/v1760600528/logolight_loizeo.png"
-        //https://res.cloudinary.com/dngmg3slj/image/upload/v1760600528/logodark_cw0gxn.png
-        alt="logo"
-        width={50}
-        height={50}
-      />
+      {!visible && (
+        <img
+          src="https://res.cloudinary.com/dngmg3slj/image/upload/v1760600528/logolight_loizeo.png"
+          //https://res.cloudinary.com/dngmg3slj/image/upload/v1760600528/logodark_cw0gxn.png
+          alt="logo"
+          width={50}
+          height={50}
+        />
+      )}
       <span className="font-medium text-black dark:text-white">Cherry</span>
     </a>
   );

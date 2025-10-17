@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import { Cover } from "@/components/ui/cover";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
@@ -42,11 +43,13 @@ export default function AboveFooter() {
         
         {/* Footer Image - Full Width */}
         <div className="mt-16 w-full overflow-hidden rounded-3xl mx-auto relative" style={{ width: '100%', maxHeight: '80vh' }}>
-          <img 
+          <Image 
             src="/footerfront.jpg" 
             alt="Footer" 
-            className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 50%', transform: 'scale(1)' }}
+            fill
+            className="object-cover"
+            style={{ objectPosition: 'center 50%' }}
+            priority
           />
           {/* Text Overlay */}
           <TextOverlayWithScroll />
@@ -61,6 +64,7 @@ const TextOverlayWithScroll = () => {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const currentRef = overlayRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -70,13 +74,13 @@ const TextOverlayWithScroll = () => {
       { threshold: 0.3 }
     );
 
-    if (overlayRef.current) {
-      observer.observe(overlayRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (overlayRef.current) {
-        observer.unobserve(overlayRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -114,71 +118,78 @@ const TextOverlayWithScroll = () => {
 const cherryPitchText = `Stop losing customers to competitors who respond instantly. Cherry delivers 24/7 AI automation that scales infinitely—deploy in minutes, see ROI in weeks. Zero overhead. Infinite capacity. Join hundreds of businesses already transforming with Cherry. Your competitive advantage starts now.`;
 
 const SkeletonOne = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2832&auto=format&fit=crop"
       alt="AI automation"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );
 
 const SkeletonTwo = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2865&auto=format&fit=crop"
       alt="Automation robots"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );
 
 const SkeletonThree = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2940&auto=format&fit=crop"
       alt="Team collaboration"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );
 
 const SkeletonFour = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2944&auto=format&fit=crop"
       alt="Global connectivity"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );
 
 const SkeletonFive = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop"
       alt="Analytics dashboard"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );
 
 const SkeletonSix = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2940&auto=format&fit=crop"
       alt="Business growth"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );
 
 const SkeletonSeven = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
-    <img
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden relative">
+    <Image
       src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2940&auto=format&fit=crop"
       alt="Security shield"
-      className="w-full h-full object-cover"
+      fill
+      className="object-cover"
     />
   </div>
 );

@@ -119,20 +119,20 @@
   body {
     @apply bg-background text-foreground;
   }
-  
+
   /* Mobile optimizations */
   html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
   }
-  
+
   /* Prevent horizontal scroll */
   html, body {
     overflow-x: hidden;
     max-width: 100vw;
   }
-  
+
   /* Improve touch targets on mobile */
   @media (max-width: 768px) {
     button, a {
@@ -154,4 +154,9 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }

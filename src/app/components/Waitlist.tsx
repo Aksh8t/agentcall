@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { PinContainer } from "@/components/ui/3d-pin";
 
 export default function Waitlist() {
   const [email, setEmail] = useState("");
@@ -33,37 +34,41 @@ export default function Waitlist() {
   };
 
   return (
-    <section id="waitlist" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Black section with sparkles */}
-        <div className="bg-black flex flex-col items-center justify-center overflow-hidden rounded-3xl py-16 px-8">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-bold text-center text-white relative z-20 mb-8">
-            Join Waitlist
-          </h1>
-          <div className="w-[40rem] h-40 relative">
-            {/* Gradients */}
-            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+    <section id="waitlist" className="py-5 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto flex items-center justify-center">
+        {/* 3D Pin Card with sparkles */}
+        <PinContainer title="Join Our Waitlist" href="#waitlist">
+          <div className="bg-black flex flex-col items-center justify-center overflow-hidden rounded-lg py-12 px-12 w-full min-w-[600px]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center text-white relative z-20 mb-8">
+              Join Waitlist
+            </h1>
+            <div className="w-full max-w-md h-32 relative">
+              {/* Gradients */}
+              <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+              <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+              <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+              <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
 
-            {/* Core component */}
-            <SparklesCore
-              background="transparent"
-              minSize={0.4}
-              maxSize={1}
-              particleDensity={1200}
-              className="w-full h-full"
-              particleColor="#FFFFFF"
-            />
+              {/* Core component */}
+              <SparklesCore
+                background="transparent"
+                minSize={0.4}
+                maxSize={1}
+                particleDensity={1200}
+                className="w-full h-full"
+                particleColor="#FFFFFF"
+              />
 
-            {/* Radial Gradient to prevent sharp edges */}
-            <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+              {/* Radial Gradient to prevent sharp edges */}
+              <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+            </div>
           </div>
-        </div>
+        </PinContainer>
+      </div>
 
-        {/* Form section below */}
-        <div className="mt-12 text-center">
+      {/* Form section below */}
+      <div className="max-w-3xl mx-auto mt-12">
+        <div className="text-center">
           <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
             Be the first to know when we launch. Get early access and exclusive
             benefits.
@@ -71,22 +76,22 @@ export default function Waitlist() {
 
           {/* Waitlist Form */}
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="relative">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-full border-2 border-foreground/20 bg-background text-foreground focus:outline-none focus:border-foreground/40 transition-colors"
+                className="w-full px-6 py-4 pr-32 rounded-full border-2 border-foreground/20 bg-background text-foreground focus:outline-none focus:border-foreground/40 transition-colors"
                 required
                 disabled={status === "loading"}
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="bg-foreground text-background px-8 py-4 rounded-full hover:opacity-90 transition-opacity font-semibold disabled:opacity-50 whitespace-nowrap"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-foreground text-background px-6 py-3 rounded-full hover:opacity-90 transition-opacity font-semibold disabled:opacity-50"
               >
-                {status === "loading" ? "Joining..." : "Join Now"}
+                {status === "loading" ? "..." : "Join"}
               </button>
             </div>
 
@@ -107,15 +112,15 @@ export default function Waitlist() {
           {/* Trust Indicators */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-foreground/60">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">✉️</span>
+              <span className="text-2xl"></span>
               <span className="font-medium">No spam, ever</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl">🎁</span>
+              <span className="text-2xl"></span>
               <span className="font-medium">Early bird benefits</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl">🔔</span>
+              <span className="text-2xl"></span>
               <span className="font-medium">Launch updates</span>
             </div>
           </div>

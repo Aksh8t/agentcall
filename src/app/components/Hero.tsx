@@ -75,7 +75,7 @@ export default function Hero() {
             }}
           >
             <LaserFlow
-              horizontalBeamOffset={0.1}
+              horizontalBeamOffset={0.2}
               verticalBeamOffset={0.0}
               color="#FF813D"
             />

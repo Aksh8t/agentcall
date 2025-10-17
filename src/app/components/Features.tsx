@@ -5,6 +5,7 @@ import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 
 
 export function FeaturesSectionDemo() {
@@ -41,7 +42,7 @@ export function FeaturesSectionDemo() {
     },
   ];
   return (
-    <div className="relative z-20 py-10 lg:py-20 max-w-5xl mx-auto px-4">
+    <div className="relative z-20 py-10 lg:py-5 max-w-5xl mx-auto px-4">
       <div className="px-4">
         <h4 className="text-2xl lg:text-4xl lg:leading-tight max-w-3xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
           Why Choose Cherry for Your Business
@@ -54,15 +55,17 @@ export function FeaturesSectionDemo() {
       </div>
 
       <div className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-6 mt-8 xl:border rounded-md dark:border-neutral-800">
-          {features.map((feature) => (
-            <FeatureCard key={feature.title} className={feature.className}>
-              <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
-              <div className=" h-full w-full">{feature.skeleton}</div>
-            </FeatureCard>
-          ))}
-        </div>
+        <FollowerPointerCard className="z-50">
+          <div className="grid grid-cols-1 lg:grid-cols-6 mt-8 xl:border rounded-md dark:border-neutral-800">
+            {features.map((feature) => (
+              <FeatureCard key={feature.title} className={feature.className}>
+                <FeatureTitle>{feature.title}</FeatureTitle>
+                <FeatureDescription>{feature.description}</FeatureDescription>
+                <div className=" h-full w-full">{feature.skeleton}</div>
+              </FeatureCard>
+            ))}
+          </div>
+        </FollowerPointerCard>
       </div>
     </div>
   );

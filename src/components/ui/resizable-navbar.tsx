@@ -333,7 +333,7 @@ export const MobileNavToggle = ({
   );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
+export const HoveredLink = ({ children, ...rest }: { children: React.ReactNode; [key: string]: unknown }) => {
   return (
     <a
       {...rest}
